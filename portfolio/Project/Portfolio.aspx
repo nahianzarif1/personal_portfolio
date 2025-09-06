@@ -418,99 +418,44 @@
             line-height: 1.6;
         }
 
-        /* Education Section */
-        .education-timeline {
-            position: relative;
-            margin-top: 3rem;
-        }
-
-        .education-timeline::before {
-            content: '';
-            position: absolute;
-            left: 50%;
-            top: 0;
-            bottom: 0;
-            width: 2px;
-            background: linear-gradient(to bottom, #58a6ff, #16acc1);
-            transform: translateX(-50%);
-        }
-
         .education-item {
-            position: relative;
-            margin-bottom: 3rem;
-            width: 45%;
-        }
+    position: relative;
+    margin-bottom: 3rem;
+    width: 45%;
+}
 
-        .education-item:nth-child(odd) {
-            left: 0;
-            text-align: right;
-        }
+/* Odd items on left, even items on right */
+.education-item:nth-child(odd) {
+    left: 0;
+    text-align: right;
+}
 
-        .education-item:nth-child(even) {
-            left: 55%;
-            text-align: left;
-        }
+.education-item:nth-child(even) {
+    left: 55%;
+    text-align: left;
+}
 
-        .education-content {
-            background: linear-gradient(135deg, #161b22 0%, #0d1117 100%);
-            padding: 2rem;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            border: 1px solid rgba(56, 139, 253, 0.2);
-            position: relative;
-        }
+/* Year positioning fixed per item */
+.education-year {
+    position: absolute;
+    top: 50%; /* keep at vertical center of item */
+    transform: translate(-50%, -50%);
+    background: #58a6ff;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    z-index: 10;
+}
 
-        .education-content::before {
-            content: '';
-            position: absolute;
-            top: 50%;
-            width: 0;
-            height: 0;
-            border: 15px solid transparent;
-        }
+/* Adjust left/right for odd/even */
+.education-item:nth-child(odd) .education-year {
+    right: -50px; /* place outside content box */
+}
 
-        .education-item:nth-child(odd) .education-content::before {
-            right: -32px;
-            border-left-color: #161b22;
-            transform: translateY(-50%);
-        }
-
-        .education-item:nth-child(even) .education-content::before {
-            left: -32px;
-            border-right-color: #161b22;
-            transform: translateY(-50%);
-        }
-
-        .education-year {
-            position: absolute;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-            background: #58a6ff;
-            color: #ffffff;
-            padding: 0.5rem 1rem;
-            border-radius: 20px;
-            font-weight: 600;
-            z-index: 10;
-        }
-
-        .education-degree {
-            font-size: 1.3rem;
-            font-weight: 600;
-            color: #58a6ff;
-            margin-bottom: 0.5rem;
-        }
-
-        .education-school {
-            color: #16acc1;
-            font-weight: 500;
-            margin-bottom: 1rem;
-        }
-
-        .education-desc {
-            color: rgba(230, 230, 230, 0.7);
-            line-height: 1.6;
-        }
+.education-item:nth-child(even) .education-year {
+    left: -50px;
+}
 
         /* Contact Section */
         .contact-grid {
@@ -734,60 +679,64 @@
         </nav>
 
         <!-- Hero Section -->
-        <section id="home" class="hero">
-            <div class="hero-container">
-                <div class="hero-content">
-                    <h3>Hi, I am</h3>
-                    <h1><asp:Label ID="lblName" runat="server"></asp:Label></h1>
-                    <p><asp:Label ID="lblDescription" runat="server"></asp:Label></p>
-                    <asp:Button ID="btnDownloadCV" runat="server" Text="Download CV" CssClass="btn-primary" OnClick="btnDownloadCV_Click" />
-                </div>
-                <div class="hero-image">
-                    <asp:Image ID="imgProfile" runat="server" AlternateText="Profile Picture" />
-                </div>
-            </div>
-        </section>
+<section id="home" class="hero">
+    <div class="hero-container">
+        <div class="hero-content">
+            <h3>Hi, I am</h3>
+            <h1>Nahian Zarif</h1>
+            <p>Computer Science & Engineering Student at KUET with a passion for software development, problem-solving, and creating innovative technological solutions.</p>
+            
+        </div>
+        <div class="hero-image">
+            <asp:Image ID="imgProfile" runat="server" ImageUrl="~/images/abcd.jpeg" alt="Profile Picture" />
+        </div>
+    </div>
+</section>
 
-        <!-- About Section -->
-        <section id="about" class="section animate-on-scroll">
-            <div class="container">
-                <h3 class="section-title">About Me</h3>
-                <p class="section-description"><asp:Label ID="lblAboutMe" runat="server"></asp:Label></p>
-                
-                <div class="about-grid">
-                    <div class="about-info">
-                        <h4 style="margin-bottom: 1.5rem; color: #58a6ff;">Personal Information</h4>
-                        <div class="info-grid">
-                            <div class="info-item">
-                                <p class="info-title">Name</p>
-                                <p><asp:Label ID="lblPersonalName" runat="server"></asp:Label></p>
-                            </div>
-                            <div class="info-item">
-                                <p class="info-title">Email</p>
-                                <p><asp:Label ID="lblEmail" runat="server"></asp:Label></p>
-                            </div>
-                            <div class="info-item">
-                                <p class="info-title">Specialty</p>
-                                <p><asp:Label ID="lblSpecialty" runat="server"></asp:Label></p>
-                            </div>
-                            <div class="info-item">
-                                <p class="info-title">Location</p>
-                                <p><asp:Label ID="lblLocation" runat="server"></asp:Label></p>
-                            </div>
-                        </div>
+
+      <!-- About Section -->
+<section id="about" class="section animate-on-scroll">
+    <div class="container">
+        <h3 class="section-title">About Me</h3>
+        <p class="section-description">
+            I am Nahian Zarif, a dedicated Computer Science & Engineering student currently in my 3rd year at KUET. I have a strong foundation in programming, algorithms, and software development with expertise in modern technologies.
+        </p>
+        
+        <div class="about-grid">
+            <div class="about-info">
+                <h4 style="margin-bottom: 1.5rem; color: #58a6ff;">Personal Information</h4>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <p class="info-title">Name</p>
+                        <p>Nahian Zarif</p>
                     </div>
-                    <div class="about-info">
-                        <h4 style="margin-bottom: 1.5rem; color: #58a6ff;">Academic Overview</h4>
-                        <div style="space-y: 1rem;">
-                            <p><strong>Year:</strong> <asp:Label ID="lblAge" runat="server"></asp:Label></p>
-                            <p><strong>CGPA:</strong> <asp:Label ID="lblExperience" runat="server"></asp:Label></p>
-                            <p><strong>Projects:</strong> <asp:Label ID="lblProjects" runat="server"></asp:Label></p>
-                            <p><strong>Status:</strong> <asp:Label ID="lblAvailability" runat="server"></asp:Label></p>
-                        </div>
+                    <div class="info-item">
+                        <p class="info-title">Email</p>
+                        <p>nahianzarif.100@gmail.com</p>
+                    </div>
+                    <div class="info-item">
+                        <p class="info-title">Specialty</p>
+                        <p>Full Stack Development & AI</p>
+                    </div>
+                    <div class="info-item">
+                        <p class="info-title">Location</p>
+                        <p>Khulna, Bangladesh</p>
                     </div>
                 </div>
             </div>
-        </section>
+            <div class="about-info">
+                <h4 style="margin-bottom: 1.5rem; color: #58a6ff;">Academic Overview</h4>
+                <div style="display: flex; flex-direction: column; gap: 1rem;">
+                    <p><strong>Year:</strong> 3rd Year</p>
+                    <p><strong>CGPA:</strong> 3.75/4.00</p>
+                    <p><strong>Projects:</strong> 20+ Completed</p>
+                    <p><strong>Status:</strong> Available for Opportunities</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
 
         <!-- Skills Section -->
         <section id="skills" class="section animate-on-scroll">
@@ -821,7 +770,7 @@
                     <asp:Repeater ID="rptEducation" runat="server">
                         <ItemTemplate>
                             <div class="education-item">
-                                <div class="education-year"><%# Eval("Year") %></div>
+                                <div class="education-year"><%# Eval("Year") %></div><br></br>
                                 <div class="education-content">
                                     <h4 class="education-degree"><%# Eval("Title") %></h4>
                                     <h5 class="education-school"><%# Eval("Institution") %></h5>
@@ -852,9 +801,7 @@
                     </asp:Repeater>
                 </div>
                 
-                <div style="text-align: center; margin-top: 3rem;">
-                    <asp:Button ID="btnMarryMe" runat="server" Text="View Complete Resume" CssClass="btn-primary" OnClick="btnMarryMe_Click" style="font-size: 1.2rem; padding: 15px 40px;" />
-                </div>
+                
             </div>
         </section>
 
@@ -874,7 +821,7 @@
                             <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
                             <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-                            <a href="#" title="GitHub"><i class="fab fa-github"></i></a>
+                            <a href="https://github.com/nahianzarif1" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>
                     
