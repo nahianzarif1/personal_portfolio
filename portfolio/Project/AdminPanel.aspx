@@ -10,11 +10,16 @@
         input, textarea { margin-bottom: 10px; padding: 8px; width: 400px; }
         button, .aspButton { padding: 8px 15px; margin-bottom: 20px; cursor: pointer; }
         hr { margin: 20px 0; }
+        .message { color: green; font-weight: bold; }
     </style>
 </head>
 <body>
     <form id="form1" runat="server">
+        <!-- ✅ Logout button -->
+        <asp:Button ID="btnLogout" runat="server" Text="Logout" OnClick="btnLogout_Click" /><br /><br />
+
         <h2>Admin Panel</h2>
+        <asp:Label ID="lblMessage" runat="server" CssClass="message"></asp:Label><br />
 
         <!-- Personal Info -->
         <h3>Personal Info</h3>
@@ -32,29 +37,26 @@
         <asp:Button ID="btnSavePersonal" runat="server" Text="Save Personal Info" OnClick="btnSavePersonal_Click" /><hr />
 
         <!-- Skills -->
-        <h3>Add Skill</h3>
+        <h3>Skills</h3>
         <asp:TextBox ID="txtSkillTitle" runat="server" placeholder="Skill Title" /><br />
-        <asp:TextBox ID="txtSkillDescription" runat="server" TextMode="MultiLine" Rows="3" placeholder="Skill Description" /><br />
-        <asp:TextBox ID="txtSkillIcon" runat="server" placeholder="Icon Class (e.g., fas fa-code)" /><br />
+        <asp:TextBox ID="txtSkillDescription" runat="server" placeholder="Skill Description" /><br />
+        <asp:TextBox ID="txtSkillIcon" runat="server" placeholder="Skill Icon" /><br />
         <asp:Button ID="btnAddSkill" runat="server" Text="Add Skill" OnClick="btnAddSkill_Click" /><hr />
 
         <!-- Education -->
-        <h3>Add Education</h3>
-        <asp:TextBox ID="txtEduTitle" runat="server" placeholder="Degree / Title" /><br />
+        <h3>Education</h3>
+        <asp:TextBox ID="txtEduTitle" runat="server" placeholder="Education Title" /><br />
         <asp:TextBox ID="txtEduInstitution" runat="server" placeholder="Institution" /><br />
         <asp:TextBox ID="txtEduYear" runat="server" placeholder="Year" /><br />
-        <asp:TextBox ID="txtEduDesc" runat="server" TextMode="MultiLine" Rows="3" placeholder="Description" /><br />
+        <asp:TextBox ID="txtEduDesc" runat="server" placeholder="Description" /><br />
         <asp:Button ID="btnAddEducation" runat="server" Text="Add Education" OnClick="btnAddEducation_Click" /><hr />
 
         <!-- Experience -->
-        <h3>Add Experience</h3>
-        <asp:TextBox ID="txtExpTitle" runat="server" placeholder="Title / Position" /><br />
+        <h3>Experience</h3>
+        <asp:TextBox ID="txtExpTitle" runat="server" placeholder="Experience Title" /><br />
         <asp:TextBox ID="txtExpDuration" runat="server" placeholder="Duration" /><br />
-        <asp:TextBox ID="txtExpDesc" runat="server" TextMode="MultiLine" Rows="3" placeholder="Description" /><br />
-        <asp:Button ID="btnAddExperience" runat="server" Text="Add Experience" OnClick="btnAddExperience_Click" /><hr />
-
-        <!-- Status Message -->
-        <asp:Label ID="lblMessage" runat="server" ForeColor="Green"></asp:Label>
+        <asp:TextBox ID="txtExpDesc" runat="server" placeholder="Description" /><br />
+        <asp:Button ID="btnAddExperience" runat="server" Text="Add Experience" OnClick="btnAddExperience_Click" /><br />
     </form>
 </body>
 </html>

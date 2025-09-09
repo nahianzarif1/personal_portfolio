@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using System.Data.SqlClient;
+using System.Web;
 using System.Web.UI;
 
 namespace PortfolioWebsite
@@ -9,15 +10,46 @@ namespace PortfolioWebsite
     {
         string connStr = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
 
-        protected void Page_Load(object sender, EventArgs e) {
+        protected void Page_Load(object sender, EventArgs e)
+        {
             if (Session["IsAdminAuthenticated"] == null || !(bool)Session["IsAdminAuthenticated"])
             {
-                // If not authenticated, redirect them back to the Login page.
-                Response.Redirect("Login.aspx");
+                if (Request.Cookies["UserInfo"] != null)
+                {
+                    string savedUsername = Request.Cookies["UserInfo"]["username"];
+                    string savedPassword = Request.Cookies["UserInfo"]["password"];
+
+                    if (savedUsername == "admin" && savedPassword == "123456")
+                    {
+                        Session["IsAdminAuthenticated"] = true;
+                        Session["Username"] = savedUsername;
+                    }
+                    else
+                    {
+                        Response.Redirect("Login.aspx");
+                    }
+                }
+                else
+                {
+                    Response.Redirect("Login.aspx");
+                }
             }
         }
 
-        // Save Personal Info
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            Session.Clear();
+            Session.Abandon();
+
+            if (Request.Cookies["UserInfo"] != null)
+            {
+                HttpCookie userCookie = new HttpCookie("UserInfo");
+                userCookie.Expires = DateTime.Now.AddDays(-1);
+                Response.Cookies.Add(userCookie);
+            }
+            Response.Redirect("Login.aspx");
+        }
+
         protected void btnSavePersonal_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connStr))
@@ -54,7 +86,6 @@ namespace PortfolioWebsite
             lblMessage.Text = "Personal Info saved successfully!";
         }
 
-        // Add Skill
         protected void btnAddSkill_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connStr))
@@ -74,7 +105,6 @@ namespace PortfolioWebsite
             txtSkillTitle.Text = txtSkillDescription.Text = txtSkillIcon.Text = "";
         }
 
-        // Add Education
         protected void btnAddEducation_Click(object sender, EventArgs e)
         {
             using (SqlConnection con = new SqlConnection(connStr))
@@ -126,6 +156,5 @@ namespace PortfolioWebsite
                 lblMessage.Text = "Error: " + ex.Message;
             }
         }
-
     }
 }

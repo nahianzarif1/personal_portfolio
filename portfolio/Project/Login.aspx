@@ -1,7 +1,5 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Login.aspx.cs" Inherits="portfolio.Project.Login" %>
 
-
-
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -46,18 +44,17 @@
             color: #e6e6e6;
             font-size: 1rem;
         }
-        .btn-primary {
-            background: linear-gradient(45deg, #58a6ff, #1f6feb);
-            color: #ffffff;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 25px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .btn-primary, .btn-secondary {
             width: 100%;
             margin-top: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            border-radius: 25px;
+            padding: 12px 25px;
         }
+        .btn-primary { background: linear-gradient(45deg, #58a6ff, #1f6feb); color: #fff; }
+        .btn-secondary { background: linear-gradient(45deg, #6c757d, #495057); color: #fff; }
         .error-message {
             color: #f85149;
             margin-top: 1rem;
@@ -77,7 +74,11 @@
                 <label for="txtPassword">Password</label>
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="form-control"></asp:TextBox>
             </div>
-            <asp:Button ID="btnLogin" runat="server" Text="Login" OnClick="btnLogin_Click" CssClass="btn-primary" />
+            <div class="form-group">
+                <asp:CheckBox ID="chkRememberMe" runat="server" Text="Remember Me" />
+            </div>
+            <asp:Button ID="btnLogin" runat="server" Text="Login" CssClass="btn-primary" OnClick="btnLogin_Click" />
+            <asp:Button ID="btnGoHome" runat="server" Text="Go to Home" CssClass="btn-secondary" OnClick="btnGoHome_Click" />
             <asp:Label ID="lblError" runat="server" CssClass="error-message" Visible="false"></asp:Label>
         </div>
     </form>

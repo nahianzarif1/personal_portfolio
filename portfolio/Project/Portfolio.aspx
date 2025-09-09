@@ -818,10 +818,10 @@
                         <p style="margin-bottom: 2rem; opacity: 0.9;">I'm always open to discussing new opportunities, collaborations, and projects in software development and technology.</p>
                         
                         <div class="social-links">
-                            <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
-                            <a href="#" title="Instagram"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.facebook.com/share/1FPxD1a3cH/" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+                            <a href="https://www.instagram.com/nahianzarif?igsh=MW01czdzbXk1eGt0ZA==" title="Instagram"><i class="fab fa-instagram"></i></a>
                             <a href="#" title="Twitter"><i class="fab fa-twitter"></i></a>
-                            <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                            <a href="https://www.linkedin.com/in/al-nahian-zarif-5b2b44204?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                             <a href="https://github.com/nahianzarif1" title="GitHub"><i class="fab fa-github"></i></a>
                         </div>
                     </div>

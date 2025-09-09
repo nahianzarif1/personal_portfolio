@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace portfolio.Project
 {
@@ -11,32 +8,64 @@ namespace portfolio.Project
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                // Already authenticated? Redirect to admin panel
+                if (Session["IsAdminAuthenticated"] != null && (bool)Session["IsAdminAuthenticated"])
+                {
+                    Response.Redirect("AdminPanel.aspx");
+                }
 
+                // Try restore session from cookie
+                if (Session["IsAdminAuthenticated"] == null && Request.Cookies["UserInfo"] != null)
+                {
+                    string savedUsername = Request.Cookies["UserInfo"]["username"];
+                    string savedPassword = Request.Cookies["UserInfo"]["password"];
+
+                    if (savedUsername == "admin" && savedPassword == "123456")
+                    {
+                        Session["IsAdminAuthenticated"] = true;
+                        Session["Username"] = savedUsername;
+                        Response.Redirect("AdminPanel.aspx");
+                    }
+                }
+            }
         }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            // --- IMPORTANT: Change these to your own secure credentials ---
             string correctUsername = "admin";
             string correctPassword = "123456";
 
             string enteredUsername = txtUsername.Text.Trim();
             string enteredPassword = txtPassword.Text;
 
-            // Check if the credentials are correct
             if (enteredUsername == correctUsername && enteredPassword == correctPassword)
             {
-                // If correct, store a value in the session to mark user as authenticated
                 Session["IsAdminAuthenticated"] = true;
+                Session["Username"] = enteredUsername;
 
-                // Redirect to the admin panel
+                if (chkRememberMe.Checked)
+                {
+                    HttpCookie userCookie = new HttpCookie("UserInfo");
+                    userCookie["username"] = enteredUsername;
+                    userCookie["password"] = enteredPassword; // Demo only
+                    userCookie.Expires = DateTime.Now.AddDays(7);
+                    Response.Cookies.Add(userCookie);
+                }
+
                 Response.Redirect("AdminPanel.aspx");
             }
             else
             {
-                // If incorrect, show an error message
                 lblError.Text = "Invalid username or password.";
                 lblError.Visible = true;
             }
+        }
+
+        protected void btnGoHome_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Portfolio.aspx"); // Replace with your actual homepage
         }
     }
 }
