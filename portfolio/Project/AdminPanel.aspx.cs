@@ -9,7 +9,13 @@ namespace PortfolioWebsite
     {
         string connStr = ConfigurationManager.ConnectionStrings["MyDBConnectionString"].ConnectionString;
 
-        protected void Page_Load(object sender, EventArgs e) { }
+        protected void Page_Load(object sender, EventArgs e) {
+            if (Session["IsAdminAuthenticated"] == null || !(bool)Session["IsAdminAuthenticated"])
+            {
+                // If not authenticated, redirect them back to the Login page.
+                Response.Redirect("Login.aspx");
+            }
+        }
 
         // Save Personal Info
         protected void btnSavePersonal_Click(object sender, EventArgs e)

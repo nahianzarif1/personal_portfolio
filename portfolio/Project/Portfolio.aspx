@@ -674,6 +674,7 @@
                     <li><a href="#education">Education</a></li>
                     <li><a href="#work">Work</a></li>
                     <li><a href="#contact">Contact</a></li>
+                    <li><a href="Login.aspx">Admin</a></li>
                 </ul>
             </div>
         </nav>
@@ -746,16 +747,16 @@
                 
                 <div class="skills-grid">
                     <asp:Repeater ID="rptSkills" runat="server">
-                        <ItemTemplate>
-                            <div class="skill-card">
-                                <div class="skill-icon">
-                                    <i class="<%# Eval("Icon") %>"></i>
-                                </div>
-                                <h4 class="skill-title"><%# Eval("Title") %></h4>
-                                <p class="skill-description"><%# Eval("Description") %></p>
-                            </div>
-                        </ItemTemplate>
-                    </asp:Repeater>
+    <ItemTemplate>
+        <div class="skill-card">
+            <div class="skill-icon">
+                <i class="<%# Eval("Icon") %>"></i>
+            </div>
+            <h4 class="skill-title"><%# Eval("Title") %></h4>
+            <p class="skill-description"><%# Eval("Description") %></p>
+        </div>
+    </ItemTemplate>
+</asp:Repeater>
                 </div>
             </div>
         </section>

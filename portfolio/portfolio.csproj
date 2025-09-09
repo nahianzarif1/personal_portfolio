@@ -74,6 +74,7 @@
     <Content Include="Global.asax" />
     <Content Include="images\school-removebg-preview.jpeg" />
     <Content Include="Project\AdminPanel.aspx" />
+    <Content Include="Project\Login.aspx" />
     <Content Include="Project\Portfolio.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -87,6 +88,13 @@
     </Compile>
     <Compile Include="Project\AdminPanel.aspx.designer.cs">
       <DependentUpon>AdminPanel.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Project\Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Project\Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
     <Compile Include="Project\Portfolio.aspx.cs">
       <DependentUpon>Portfolio.aspx</DependentUpon>
